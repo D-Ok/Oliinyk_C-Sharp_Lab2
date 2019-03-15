@@ -98,7 +98,7 @@ namespace Oliinyk_Lab2.ViewModels
             }
         }
 
-        public ShowInformationViewModel(Person person)
+        internal ShowInformationViewModel(Person person)
         {
             InitializePerson(ref person);
             if (person.IsBirthday) MessageBox.Show(" Happy Birthday!!! ");

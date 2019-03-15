@@ -5,8 +5,6 @@ using System;
 using System.Threading.Tasks;
 using System.Threading;
 using Oliinyk_Lab2.Tools.Managers;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 using Oliinyk_Lab2.Tools.Navigation;
 
 namespace Oliinyk_Lab2.ViewModels
@@ -68,14 +66,6 @@ namespace Oliinyk_Lab2.ViewModels
             }
         }
 
-        internal void CleanAll()
-        {
-            Name = null;
-            Email = null;
-            Surname = null;
-            Birthday = DateTime.Now;
-        }
-
         private bool CanProceedExecute(object obj)
         {
             return !String.IsNullOrWhiteSpace(_name) && !String.IsNullOrWhiteSpace(_surname) && !String.IsNullOrWhiteSpace(_email);
@@ -83,25 +73,25 @@ namespace Oliinyk_Lab2.ViewModels
 
         private async void ProceedImplementation(object obj)
         {
-            Person person = new Person(Name, Surname, Email, Birthday);
-            bool good = true;
+            Person person = null;
             LoaderManeger.Instance.ShowLoader();
-            await Task.Run(() =>
+            var result = await Task.Run(() =>
             {
                 Thread.Sleep(2000);
-                var results = new List<ValidationResult>();
-                var context = new ValidationContext(person);
-                if (!Validator.TryValidateObject(person, context, results, true))
+                try
                 {
-                    good = false;
-                    foreach (var error in results)
-                    {
-                        MessageBox.Show(error.ErrorMessage);
-                    }
+                    person = new Person(Name, Surname, Email, Birthday);
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    
+                    return false;
+                }
+                return true;
             });
             LoaderManeger.Instance.HideLoader();
-            if(good)  NavigationManager.Instance.Navigate(ViewType.ShowInformation, person);
+            if(result && person!=null)  NavigationManager.Instance.Navigate(ViewType.ShowInformation, person);
         }
 
     }

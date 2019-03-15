@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Oliinyk_Lab2.Models;
-using Oliinyk_Lab2.ViewModels;
 
 namespace Oliinyk_Lab2.Tools.Navigation
 {

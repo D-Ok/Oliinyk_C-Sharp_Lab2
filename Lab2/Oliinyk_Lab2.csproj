@@ -62,6 +62,11 @@
     <Compile Include="Models\BirthdayDate.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Tools\BaseViewModel.cs" />
+    <Compile Include="Tools\Exceptions\FutureBirthdayException.cs" />
+    <Compile Include="Tools\Exceptions\PastBirthdayException.cs" />
+    <Compile Include="Tools\Exceptions\TooShortNameException.cs" />
+    <Compile Include="Tools\Exceptions\TooShortSurnameException.cs" />
+    <Compile Include="Tools\Exceptions\UncorrectEmailException.cs" />
     <Compile Include="Tools\ILoaderOwner.cs" />
     <Compile Include="Tools\Managers\LoaderManager.cs" />
     <Compile Include="Tools\Managers\NavigationManager.cs" />
@@ -70,7 +75,6 @@
     <Compile Include="Tools\Navigation\INavigatable.cs" />
     <Compile Include="Tools\Navigation\INavigationModel.cs" />
     <Compile Include="Tools\Navigation\InitializaionNavigaionModel.cs" />
-    <Compile Include="Tools\PersonBirthdayAttribute.cs" />
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\EnterDataViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
